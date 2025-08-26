@@ -1,0 +1,48 @@
+services:
+  n8nio:
+    image: docker.n8n.io/n8nio/n8n
+    volumes:
+      - './n8n-data:/home/node/.n8n'
+    ports:
+      - '5678:5678'
+    container_name: n8n
+    restart: unless-stopped
+    networks:
+      - web
+  db:
+    image: postgres
+    container_name: pgdb
+    restart: always
+    ports:
+      - "5434:5432"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: Zos38586
+    volumes:
+      - ./pgdb-data:/var/lib/postgresql/data
+    networks:
+      - web
+  image-server:
+    image: phyjim/image-server:latest
+    ports:
+      - "8000:8000"
+    environment:
+      - DB_HOST=pgdb
+      - DB_PORT=5432
+      - DB_NAME=qc
+      - DB_USER=admin
+      - DB_PASSWORD=Zos38586
+    networks:
+      - web
+
+  web-cam:
+    image: phyjim/web-cam:latest
+    restart: always
+    ports:
+      - "5555:80"
+    networks:
+      - web
+
+networks:
+  web: 
+    driver: bridge
