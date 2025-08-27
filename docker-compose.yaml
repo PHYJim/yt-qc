@@ -103,7 +103,7 @@ services:
 
   minio-service:
     restart: unless-stopped
-    image: phyjim/qc-minio:latest
+    image: phyjim/qc-minio:base
     container_name: bbminio
     environment:
       MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY}
@@ -154,6 +154,7 @@ services:
   redis-service:
     restart: unless-stopped
     image: redis
+    container_name: bbredis
     command: redis-server --requirepass "${REDIS_PASSWORD}"
     volumes:
       - redis_data:/data
