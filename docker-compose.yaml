@@ -103,7 +103,7 @@ services:
 
   minio-service:
     restart: unless-stopped
-    image: phyjim/qc-minio:latest
+    image: phyjim/qc-minio:base
     container_name: bbminio
     environment:
       MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY}
