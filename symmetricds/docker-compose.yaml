@@ -1,0 +1,8 @@
+services:
+  symmetricds:
+    image: jumpmind/symmetricds
+    volumes:
+      - './sym-engines:/opt/symmetric-ds/engines'
+    container_name: sym
+    ports:
+      - '31416:31415'
