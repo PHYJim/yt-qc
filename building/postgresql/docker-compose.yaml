@@ -1,0 +1,12 @@
+services:
+  db:
+    image: phyjim/qc-pgdb:base
+    container_name: pgdb
+    restart: always
+    ports:
+      - "5002:5432"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: Zos38586
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
