@@ -36,7 +36,7 @@ services:
       - web
 
   web-cam:
-    image: phyjim/web-cam:base
+    image: phyjim/web_cam:base
     restart: always
     container_name: web_cam
     ports:
