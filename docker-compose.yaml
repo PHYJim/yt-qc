@@ -16,6 +16,8 @@ services:
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: Zos38586
+    volumes:
+      - pgdata:/var/lib/postgresql/data
     networks:
       - web
   image-server:
@@ -34,7 +36,7 @@ services:
       - web
 
   web-cam:
-    image: phyjim/web-cam:latest
+    image: phyjim/web-cam:base
     restart: always
     container_name: web_cam
     ports:
@@ -183,4 +185,6 @@ networks:
 
 volumes:
   redis_data:
+    driver: local
+  pgdata:
     driver: local
