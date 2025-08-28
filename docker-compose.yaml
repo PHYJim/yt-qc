@@ -146,6 +146,7 @@ services:
     container_name: bbcouchdb
     environment:
       - COUCHDB_PASSWORD=${COUCH_DB_PASSWORD}
+      - POSTGRES_PASSWORD=password
       - COUCHDB_USER=${COUCH_DB_USER}
       - TARGETBUILD=docker-compose
     networks:
@@ -170,7 +171,11 @@ services:
       - '31416:31415'
     networks:
       - web
-
+    depends_on:
+      - db
+      - redis-service
+      - minio-service
+      - couchdb-service
 
 networks:
   web: 
